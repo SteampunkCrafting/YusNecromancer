@@ -1,0 +1,104 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "YusNecromancer (Debug)",
+			"request": "launch",
+			"preLaunchTask": "YusNecromancer Linux Debug Build",
+			"program": "/home/wize/Repositories/YusNecromancer/Binaries/Linux/UE4-Linux-Debug",
+			"args": [
+			],
+			"cwd": "/opt/unreal-engine",
+			"type": "lldb"
+		},
+		{
+			"name": "YusNecromancer (DebugGame)",
+			"request": "launch",
+			"preLaunchTask": "YusNecromancer Linux DebugGame Build",
+			"program": "/home/wize/Repositories/YusNecromancer/Binaries/Linux/UE4-Linux-DebugGame",
+			"args": [
+			],
+			"cwd": "/opt/unreal-engine",
+			"type": "lldb"
+		},
+		{
+			"name": "YusNecromancer (Development)",
+			"request": "launch",
+			"preLaunchTask": "YusNecromancer Linux Development Build",
+			"program": "/home/wize/Repositories/YusNecromancer/Binaries/Linux/UE4",
+			"args": [
+			],
+			"cwd": "/opt/unreal-engine",
+			"type": "lldb"
+		},
+		{
+			"name": "YusNecromancer (Shipping)",
+			"request": "launch",
+			"preLaunchTask": "YusNecromancer Linux Shipping Build",
+			"program": "/home/wize/Repositories/YusNecromancer/Binaries/Linux/UE4-Linux-Shipping",
+			"args": [
+			],
+			"cwd": "/opt/unreal-engine",
+			"type": "lldb"
+		},
+		{
+			"name": "YusNecromancer (Test)",
+			"request": "launch",
+			"preLaunchTask": "YusNecromancer Linux Test Build",
+			"program": "/home/wize/Repositories/YusNecromancer/Binaries/Linux/UE4-Linux-Test",
+			"args": [
+			],
+			"cwd": "/opt/unreal-engine",
+			"type": "lldb"
+		},
+		{
+			"name": "YusNecromancerEditor (Debug)",
+			"request": "launch",
+			"preLaunchTask": "YusNecromancerEditor Linux Debug Build",
+			"program": "/opt/unreal-engine/Engine/Binaries/Linux/UE4Editor-Linux-Debug",
+			"args": [
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject"
+			],
+			"cwd": "/opt/unreal-engine",
+			"type": "lldb"
+		},
+		{
+			"name": "YusNecromancerEditor (DebugGame)",
+			"request": "launch",
+			"preLaunchTask": "YusNecromancerEditor Linux DebugGame Build",
+			"program": "/opt/unreal-engine/Engine/Binaries/Linux/UE4Editor-Linux-DebugGame",
+			"args": [
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject"
+			],
+			"cwd": "/opt/unreal-engine",
+			"type": "lldb"
+		},
+		{
+			"name": "YusNecromancerEditor (Development)",
+			"request": "launch",
+			"preLaunchTask": "YusNecromancerEditor Linux Development Build",
+			"program": "/opt/unreal-engine/Engine/Binaries/Linux/UE4Editor",
+			"args": [
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject"
+			],
+			"cwd": "/opt/unreal-engine",
+			"type": "lldb"
+		},
+		{
+			"name": "Generate Project Files",
+			"type": "mono",
+			"request": "launch",
+			"program": "/opt/unreal-engine/Engine/Binaries/DotNET/UnrealBuildTool.exe",
+			"console": "internalConsole",
+			"args": [
+				"-projectfiles",
+				"-vscode",
+				"-project=/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-game",
+				"-engine"
+			],
+			"internalConsoleOptions": "openOnSessionStart",
+			"cwd": "/opt/unreal-engine"
+		}
+	]
+}

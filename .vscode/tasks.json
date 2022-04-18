@@ -1,0 +1,720 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "YusNecromancer Linux Debug Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"Linux",
+				"Debug",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer Linux Debug Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"Linux",
+				"Debug",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"YusNecromancer Linux Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer Linux Debug Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"Linux",
+				"Debug",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer Linux DebugGame Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"Linux",
+				"DebugGame",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer Linux DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"Linux",
+				"DebugGame",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"YusNecromancer Linux DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer Linux DebugGame Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"Linux",
+				"DebugGame",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer Linux Development Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"Linux",
+				"Development",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer Linux Development Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"Linux",
+				"Development",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"YusNecromancer Linux Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer Linux Development Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"Linux",
+				"Development",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer Linux Shipping Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"Linux",
+				"Shipping",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer Linux Shipping Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"Linux",
+				"Shipping",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"YusNecromancer Linux Shipping Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer Linux Shipping Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"Linux",
+				"Shipping",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer Linux Test Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"Linux",
+				"Test",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer Linux Test Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"Linux",
+				"Test",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"YusNecromancer Linux Test Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer Linux Test Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"Linux",
+				"Test",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer LinuxAArch64 Debug Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"LinuxAArch64",
+				"Debug",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer LinuxAArch64 Debug Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"LinuxAArch64",
+				"Debug",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"YusNecromancer LinuxAArch64 Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer LinuxAArch64 Debug Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"LinuxAArch64",
+				"Debug",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer LinuxAArch64 DebugGame Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"LinuxAArch64",
+				"DebugGame",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer LinuxAArch64 DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"LinuxAArch64",
+				"DebugGame",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"YusNecromancer LinuxAArch64 DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer LinuxAArch64 DebugGame Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"LinuxAArch64",
+				"DebugGame",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer LinuxAArch64 Development Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"LinuxAArch64",
+				"Development",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer LinuxAArch64 Development Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"LinuxAArch64",
+				"Development",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"YusNecromancer LinuxAArch64 Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer LinuxAArch64 Development Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"LinuxAArch64",
+				"Development",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer LinuxAArch64 Shipping Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"LinuxAArch64",
+				"Shipping",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer LinuxAArch64 Shipping Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"LinuxAArch64",
+				"Shipping",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"YusNecromancer LinuxAArch64 Shipping Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer LinuxAArch64 Shipping Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"LinuxAArch64",
+				"Shipping",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer LinuxAArch64 Test Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"LinuxAArch64",
+				"Test",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer LinuxAArch64 Test Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"LinuxAArch64",
+				"Test",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"YusNecromancer LinuxAArch64 Test Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancer LinuxAArch64 Test Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancer",
+				"LinuxAArch64",
+				"Test",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancerEditor Linux Debug Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancerEditor",
+				"Linux",
+				"Debug",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancerEditor Linux Debug Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancerEditor",
+				"Linux",
+				"Debug",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"YusNecromancerEditor Linux Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancerEditor Linux Debug Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancerEditor",
+				"Linux",
+				"Debug",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancerEditor Linux DebugGame Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancerEditor",
+				"Linux",
+				"DebugGame",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancerEditor Linux DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancerEditor",
+				"Linux",
+				"DebugGame",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"YusNecromancerEditor Linux DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancerEditor Linux DebugGame Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancerEditor",
+				"Linux",
+				"DebugGame",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancerEditor Linux Development Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancerEditor",
+				"Linux",
+				"Development",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancerEditor Linux Development Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancerEditor",
+				"Linux",
+				"Development",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"YusNecromancerEditor Linux Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		},
+		{
+			"label": "YusNecromancerEditor Linux Development Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"YusNecromancerEditor",
+				"Linux",
+				"Development",
+				"/home/wize/Repositories/YusNecromancer/YusNecromancer.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/opt/unreal-engine"
+			}
+		}
+	]
+}
