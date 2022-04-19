@@ -34,9 +34,9 @@ private:
 	OnMoveForward(float);
 	void OnMoveRight(float);
 
-	void OnDodge();			// TODO
-	void OnBasicAction();	// TODO
-	void OnSpecialAction(); // TODO
+	void OnDodge();
+	void OnBasicAction();
+	void OnSpecialAction();
 
 protected:
 	virtual void

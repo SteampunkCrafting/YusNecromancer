@@ -37,11 +37,16 @@ void ARoflik::Tick(float DeltaTime)
 {
 	this->Super::Tick(DeltaTime);
 
-	/* ---- PERFORMING ACTIONS ---- */
-
+	/* ---- PERFORMING DIRECTION-RELATED ACTIONS ---- */
 	if (!this->MovementDirection.IsZero())
+	{
+		// MOVEMENT TOWARDS THE GIVEN DIRECTION
 		this->SetActorLocation(
 			this->GetActorLocation() + this->MovementDirection * DEFAULT_SPEED * DeltaTime);
+
+		// MESH ROTATES TOWARDS THE GIVEN DIRECTION
+		this->MeshComponent->SetRelativeRotation(this->MovementDirection.Rotation());
+	}
 }
 
 void ARoflik::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
@@ -60,3 +65,9 @@ void ARoflik::OnMoveRight(float Value)
 {
 	this->MovementDirection.Y = FMath::Clamp(Value, -1.f, 1.f);
 }
+
+void ARoflik::OnDodge() {}
+
+void ARoflik::OnBasicAction() {}
+
+void ARoflik::OnSpecialAction() {}
