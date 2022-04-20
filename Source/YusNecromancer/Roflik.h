@@ -1,9 +1,9 @@
 #pragma once
 
 /* ---- INCLUDES ---- */
+#include "Camera/CameraComponent.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
-#include "Camera/CameraComponent.h"
 #include "Roflik.generated.h"
 
 /* ---- CONTROL MAPPINGS---- */
@@ -16,34 +16,31 @@
 
 /* ---- CLASS DECLARATION ---- */
 UCLASS()
-class YUSNECROMANCER_API ARoflik : public APawn
-{
-	GENERATED_BODY()
+class YUSNECROMANCER_API ARoflik : public APawn {
+  GENERATED_BODY()
 
 private:
-	UPROPERTY(EditAnywhere)
-	UCameraComponent *CameraComponent;
+  UPROPERTY(EditAnywhere)
+  UCameraComponent *CameraComponent;
 
-	UPROPERTY(EditAnywhere)
-	UStaticMeshComponent *MeshComponent;
+  UPROPERTY(EditAnywhere)
+  UStaticMeshComponent *MeshComponent;
 
-	UPROPERTY(VisibleAnywhere)
-	FVector MovementDirection;
+  UPROPERTY(VisibleAnywhere)
+  FVector RelativeMoveDir;
 
-	void
-	OnMoveForward(float);
-	void OnMoveRight(float);
+  void OnMoveForward(float);
+  void OnMoveRight(float);
 
-	void OnDodge();
-	void OnBasicAction();
-	void OnSpecialAction();
+  void OnDodge();
+  void OnBasicAction();
+  void OnSpecialAction();
 
 protected:
-	virtual void
-	BeginPlay() override;
+  virtual void BeginPlay() override;
 
 public:
-	ARoflik();
-	virtual void Tick(float) override;
-	virtual void SetupPlayerInputComponent(class UInputComponent *) override;
+  ARoflik();
+  virtual void Tick(float) override;
+  virtual void SetupPlayerInputComponent(class UInputComponent *) override;
 };
