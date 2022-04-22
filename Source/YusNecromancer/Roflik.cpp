@@ -6,10 +6,15 @@ ARoflik::ARoflik() {
   this->AutoPossessPlayer = EAutoReceiveInput::Player0;
 
   /* ---- BODY SETUP ---- */
-  /* -- ROOT -- */
+  /* -- ROOT (AND HIT CAPSULE) -- */
   {
-    this->RootComponent =
-        this->CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
+    UCapsuleComponent *const Capsule =
+        this->CreateDefaultSubobject<UCapsuleComponent>(TEXT("Root"));
+    this->RootComponent = Capsule;
+
+    Capsule->InitCapsuleSize(15.f, 50.f);
+    Capsule->SetCollisionProfileName(TEXT("Pawn"));
+
     this->SetActorRotation(FRotator(0.f, -45.f, 0.f));
   }
   /* -- CAMERA -- */
@@ -28,8 +33,9 @@ ARoflik::ARoflik() {
     // MESH COMPONENT
     UStaticMeshComponent *const Mesh =
         this->CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
-    Mesh->SetupAttachment(this->RootComponent);
     this->MeshComponent = Mesh;
+
+    Mesh->SetupAttachment(this->RootComponent);
 
     // SETTING DEFAULT MESH
     static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(
@@ -37,25 +43,14 @@ ARoflik::ARoflik() {
     UStaticMesh *const Asset = MeshAsset.Object;
     Mesh->SetStaticMesh(Asset);
   }
-}
 
-void ARoflik::BeginPlay() { this->Super::BeginPlay(); }
-
-void ARoflik::Tick(float DeltaTime) {
-  this->Super::Tick(DeltaTime);
-
-  /* ---- PERFORMING DIRECTION-RELATED ACTIONS ---- */
-  if (!this->RelativeMoveDir.IsZero()) {
-    this->RelativeMoveDir.Normalize();
-    const auto MoveDir =
-        this->GetActorRotation().RotateVector(this->RelativeMoveDir);
-
-    // MOVEMENT TOWARDS THE GIVEN DIRECTION
-    this->SetActorLocation(this->GetActorLocation() +
-                           MoveDir * DEFAULT_SPEED * DeltaTime);
-
-    // MESH ROTATES TOWARDS THE GIVEN DIRECTION
-    this->MeshComponent->SetRelativeRotation(this->RelativeMoveDir.Rotation());
+  /* -- MOVEMENT -- */
+  {
+    this->MoveComponent =
+        this->CreateDefaultSubobject<URoflikMovementComponent>(
+            TEXT("Movement"));
+    this->MoveComponent->UpdatedComponent = this->RootComponent;
+    this->MoveComponent->ParentMeshComponent = this->MeshComponent;
   }
 }
 
@@ -68,15 +63,9 @@ void ARoflik::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent) {
 }
 
 void ARoflik::OnMoveForward(float Value) {
-  this->RelativeMoveDir.X = FMath::Clamp(Value, -1.f, 1.f);
+  this->MoveComponent->AddInputVector(this->GetActorForwardVector() * Value);
 }
 
 void ARoflik::OnMoveRight(float Value) {
-  this->RelativeMoveDir.Y = FMath::Clamp(Value, -1.f, 1.f);
+  this->MoveComponent->AddInputVector(this->GetActorRightVector() * Value);
 }
-
-void ARoflik::OnDodge() {}
-
-void ARoflik::OnBasicAction() {}
-
-void ARoflik::OnSpecialAction() {}

@@ -2,8 +2,11 @@
 
 /* ---- INCLUDES ---- */
 #include "Camera/CameraComponent.h"
+#include "Components/CapsuleComponent.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "RoflikMovementComponent.h"
+
 #include "Roflik.generated.h"
 
 /* ---- CONTROL MAPPINGS---- */
@@ -12,7 +15,6 @@
 #define ACTION_MAPPING_BASIC "ROFLIK_ACTION_BASIC"
 #define ACTION_MAPPING_SPECIAL "ROFLIK_ACTION_SPECIAL"
 #define ACTION_MAPPING_DODGE "ROFLIK_ACTION_DODGE"
-#define DEFAULT_SPEED 100.f
 
 /* ---- CLASS DECLARATION ---- */
 UCLASS()
@@ -20,27 +22,23 @@ class YUSNECROMANCER_API ARoflik : public APawn {
   GENERATED_BODY()
 
 private:
+  UPROPERTY(VisibleAnywhere)
+  URoflikMovementComponent *MoveComponent;
+
   UPROPERTY(EditAnywhere)
   UCameraComponent *CameraComponent;
 
   UPROPERTY(EditAnywhere)
   UStaticMeshComponent *MeshComponent;
 
-  UPROPERTY(VisibleAnywhere)
-  FVector RelativeMoveDir;
-
   void OnMoveForward(float);
   void OnMoveRight(float);
 
-  void OnDodge();
-  void OnBasicAction();
-  void OnSpecialAction();
-
-protected:
-  virtual void BeginPlay() override;
+  void OnDodge();         // TODO
+  void OnBasicAction();   // TODO
+  void OnSpecialAction(); // TODO
 
 public:
   ARoflik();
-  virtual void Tick(float) override;
   virtual void SetupPlayerInputComponent(class UInputComponent *) override;
 };
