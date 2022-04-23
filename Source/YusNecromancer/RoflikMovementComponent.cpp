@@ -2,37 +2,53 @@
 
 #include "RoflikMovementComponent.h"
 
+URoflikMovementComponent::URoflikMovementComponent() {
+  this->PrimaryComponentTick.bCanEverTick = true;
+  this->FGravitySpeed = 0.f;
+}
+
 void URoflikMovementComponent::TickComponent(
     float DeltaTime, ELevelTick TickType,
     FActorComponentTickFunction *ThisTickFunction) {
 
-  /* ---- CHECKING VALIDITY OF STUFF ---- */
-  if (!this->PawnOwner || !this->UpdatedComponent ||
-      this->ShouldSkipUpdate(DeltaTime))
+  /* ---- NULLPTR CHECK ---- */
+  if (!(this->PawnOwner && this->UpdatedComponent && this->ParentMeshComponent))
     return;
 
-  /* ---- GETTING AND CLEARING MOVEMENT VECTOR ---- */
-  FVector DesiredMovementThisFrame =
-      this->ConsumeInputVector().GetClampedToMaxSize2D(1.f) * DeltaTime *
+  /* ---- RESOURCE SAVING ---- */
+  if (this->ShouldSkipUpdate(DeltaTime))
+    return;
+
+  /* ---- CONSUMING MOVEMENT VECTOR ---- */
+  const FVector ControlMovementVector =
+      this->ConsumeInputVector().GetClampedToMaxSize(1.f) * DeltaTime *
       DEFAULT_SPEED;
-
-  if (DesiredMovementThisFrame.IsNearlyZero())
-    return;
+  const FVector DesiredMovementVector =
+      ControlMovementVector +
+      FVector(0.f, 0.f, -1.f) * this->FGravitySpeed * DeltaTime;
 
   FHitResult Hit;
-  this->SafeMoveUpdatedComponent(DesiredMovementThisFrame,
+  this->SafeMoveUpdatedComponent(DesiredMovementVector,
                                  this->UpdatedComponent->GetComponentRotation(),
                                  true, Hit);
+  /* -- HANDLING FREE FALL -- */
+  if (FMath::IsNearlyZero(Hit.Normal.Z))
+    // If having a free fall
+    this->FGravitySpeed += DeltaTime * ACCELERATION_DUE_TO_GRAVITY;
+  else
+    // If standing on a solid ground
+    this->FGravitySpeed = 0.f;
 
+  /* -- HANDLING WALL SLIDING -- */
   if (Hit.IsValidBlockingHit())
-    this->SlideAlongSurface(DesiredMovementThisFrame, 1.f - Hit.Time,
-                            Hit.Normal, Hit);
+    this->SlideAlongSurface(DesiredMovementVector, 1.f - Hit.Time, Hit.Normal,
+                            Hit);
 
   /* ---- ROTATING MESH ---- */
-  if (this->ParentMeshComponent)
+  if (!ControlMovementVector.IsNearlyZero())
     this->ParentMeshComponent->SetRelativeRotation(
         this->UpdatedComponent->GetRelativeRotation()
             .GetInverse()
-            .RotateVector(DesiredMovementThisFrame)
+            .RotateVector(ControlMovementVector)
             .Rotation());
 }

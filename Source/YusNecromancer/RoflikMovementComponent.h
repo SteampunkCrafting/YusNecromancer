@@ -7,10 +7,8 @@
 #include "RoflikMovementComponent.generated.h"
 
 #define DEFAULT_SPEED 100.f
+#define ACCELERATION_DUE_TO_GRAVITY 800.f
 
-/**
- *
- */
 UCLASS()
 class YUSNECROMANCER_API URoflikMovementComponent
     : public UPawnMovementComponent {
@@ -24,10 +22,18 @@ private:
    */
   USceneComponent *ParentMeshComponent;
 
+  UPROPERTY(VisibleAnywhere)
+  /**
+   * @brief FGravitySpeed Integral of current acceleration due to gravity
+   */
+  float FGravitySpeed;
+
   // ARoflik has an access to the fields of the struct
   friend class ARoflik;
 
 public:
+  URoflikMovementComponent();
+
   virtual void TickComponent(float, enum ELevelTick,
                              FActorComponentTickFunction *) override;
 };
