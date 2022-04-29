@@ -5,7 +5,7 @@ ARoflik::ARoflik() {
   this->PrimaryActorTick.bCanEverTick = true;
   this->AutoPossessPlayer = EAutoReceiveInput::Player0;
 
-  /* ---- BODY SETUP ---- */
+  /* ---- COMPONENT SETUP ---- */
   /* -- ROOT (AND HIT CAPSULE) -- */
   {
     UCapsuleComponent *const Capsule =
@@ -17,6 +17,7 @@ ARoflik::ARoflik() {
 
     this->SetActorRotation(FRotator(0.f, -45.f, 0.f));
   }
+
   /* -- CAMERA -- */
   {
     UCameraComponent *const Camera =
@@ -31,9 +32,8 @@ ARoflik::ARoflik() {
   /* -- MESH -- */
   {
     // MESH COMPONENT
-    UStaticMeshComponent *const Mesh =
+    UStaticMeshComponent *const Mesh = this->MeshComponent =
         this->CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
-    this->MeshComponent = Mesh;
 
     Mesh->SetupAttachment(this->RootComponent);
 
@@ -51,6 +51,21 @@ ARoflik::ARoflik() {
             TEXT("Movement"));
     this->MoveComponent->UpdatedComponent = this->RootComponent;
     this->MoveComponent->ParentMeshComponent = this->MeshComponent;
+  }
+
+  /* -- STATS AND HEALTHBAR -- */
+  {
+    this->StatsComponent =
+        this->CreateDefaultSubobject<UStatsComponent>(TEXT("Stats"));
+
+    //    static ConstructorHelpers::FClassFinder<UUserWidget> MyWidgetClass(
+    //        TEXT("/Game/WBP_Healthbar"));
+    //    UWidgetComponent *const HPBar = this->HealthBar =
+    //        CreateDefaultSubobject<UWidgetComponent>("HealthBar");
+    //    HPBar->SetWidgetSpace(EWidgetSpace::Screen);
+    //    HPBar->SetWidgetClass(MyWidgetClass.Class);
+    //    HPBar->SetRelativeLocation(FVector(0.f));
+    //    HPBar->SetupAttachment(this->RootComponent);
   }
 }
 

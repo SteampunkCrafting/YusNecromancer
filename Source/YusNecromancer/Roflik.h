@@ -6,6 +6,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "RoflikMovementComponent.h"
+#include "StatsComponent.h"
 
 #include "Roflik.generated.h"
 
@@ -21,16 +22,14 @@ UCLASS()
 class YUSNECROMANCER_API ARoflik : public APawn {
   GENERATED_BODY()
 
-private:
-  UPROPERTY(VisibleAnywhere)
-  URoflikMovementComponent *MoveComponent;
+private: // COMPONENTS
+  UPROPERTY(VisibleAnywhere) URoflikMovementComponent *MoveComponent;
+  UPROPERTY(EditAnywhere) UCameraComponent *CameraComponent;
+  UPROPERTY(EditAnywhere) UStaticMeshComponent *MeshComponent;
+  UPROPERTY(EditAnywhere) UStatsComponent *StatsComponent;
+  UPROPERTY(VisibleAnywhere) UWidgetComponent *HealthBar;
 
-  UPROPERTY(EditAnywhere)
-  UCameraComponent *CameraComponent;
-
-  UPROPERTY(EditAnywhere)
-  UStaticMeshComponent *MeshComponent;
-
+protected: // CONTROL HOOKS
   void OnMoveForward(float);
   void OnMoveRight(float);
 
@@ -38,7 +37,7 @@ private:
   void OnBasicAction();   // TODO
   void OnSpecialAction(); // TODO
 
-public:
+protected: // HOOKS
   ARoflik();
   virtual void SetupPlayerInputComponent(class UInputComponent *) override;
 };
