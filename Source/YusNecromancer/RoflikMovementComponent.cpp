@@ -12,7 +12,8 @@ void URoflikMovementComponent::TickComponent(
     FActorComponentTickFunction *ThisTickFunction) {
 
   /* ---- NULLPTR CHECK ---- */
-  if (!(this->PawnOwner && this->UpdatedComponent && this->ParentMeshComponent))
+  if (!(this->PawnOwner && this->UpdatedComponent &&
+        this->ParentMeshComponent && this->ParentStatsComponent))
     return;
 
   /* ---- RESOURCE SAVING ---- */

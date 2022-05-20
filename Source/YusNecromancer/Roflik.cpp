@@ -1,6 +1,7 @@
 #include "Roflik.h"
 
-ARoflik::ARoflik() {
+ARoflik::ARoflik()
+{
   /* ---- VARIOUS INIT PARAMETERS ---- */
   this->PrimaryActorTick.bCanEverTick = true;
   this->AutoPossessPlayer = EAutoReceiveInput::Player0;
@@ -44,6 +45,21 @@ ARoflik::ARoflik() {
     Mesh->SetStaticMesh(Asset);
   }
 
+  /* -- STATS AND HEALTHBAR -- */
+  {
+    const UStatsComponent *const Stats = this->StatsComponent =
+        this->CreateDefaultSubobject<UStatsComponent>(TEXT("Stats"));
+
+    static ConstructorHelpers::FClassFinder<UStatsWidget> MyWidgetClass(
+        TEXT("/Game/WBP_RoflikHealthbar"));
+    UWidgetComponent *const HPBar = this->HealthBar =
+        CreateDefaultSubobject<UWidgetComponent>("HealthBar");
+    HPBar->SetWidgetSpace(EWidgetSpace::Screen);
+    HPBar->SetWidgetClass(MyWidgetClass.Class);
+    HPBar->SetRelativeLocation(FVector(0.f));
+    HPBar->SetupAttachment(this->RootComponent);
+  }
+
   /* -- MOVEMENT -- */
   {
     this->MoveComponent =
@@ -51,25 +67,12 @@ ARoflik::ARoflik() {
             TEXT("Movement"));
     this->MoveComponent->UpdatedComponent = this->RootComponent;
     this->MoveComponent->ParentMeshComponent = this->MeshComponent;
-  }
-
-  /* -- STATS AND HEALTHBAR -- */
-  {
-    this->StatsComponent =
-        this->CreateDefaultSubobject<UStatsComponent>(TEXT("Stats"));
-
-    //    static ConstructorHelpers::FClassFinder<UUserWidget> MyWidgetClass(
-    //        TEXT("/Game/WBP_Healthbar"));
-    //    UWidgetComponent *const HPBar = this->HealthBar =
-    //        CreateDefaultSubobject<UWidgetComponent>("HealthBar");
-    //    HPBar->SetWidgetSpace(EWidgetSpace::Screen);
-    //    HPBar->SetWidgetClass(MyWidgetClass.Class);
-    //    HPBar->SetRelativeLocation(FVector(0.f));
-    //    HPBar->SetupAttachment(this->RootComponent);
+    this->MoveComponent->ParentStatsComponent = this->StatsComponent;
   }
 }
 
-void ARoflik::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent) {
+void ARoflik::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
+{
   this->Super::SetupPlayerInputComponent(PlayerInputComponent);
   this->InputComponent->BindAxis(AXIS_MAPPING_FORWARD, this,
                                  &ARoflik::OnMoveForward);
@@ -77,10 +80,19 @@ void ARoflik::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent) {
                                  &ARoflik::OnMoveRight);
 }
 
-void ARoflik::OnMoveForward(float Value) {
+void ARoflik::BeginPlay()
+{
+  this->Super::BeginPlay();
+  ((UStatsWidget *)this->HealthBar->GetWidget())
+      ->SetTrackedStats(this->StatsComponent);
+}
+
+void ARoflik::OnMoveForward(float Value)
+{
   this->MoveComponent->AddInputVector(this->GetActorForwardVector() * Value);
 }
 
-void ARoflik::OnMoveRight(float Value) {
+void ARoflik::OnMoveRight(float Value)
+{
   this->MoveComponent->AddInputVector(this->GetActorRightVector() * Value);
 }

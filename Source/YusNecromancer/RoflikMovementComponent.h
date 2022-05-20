@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PawnMovementComponent.h"
+#include "StatsComponent.h"
+
 #include "RoflikMovementComponent.generated.h"
 
 #define DEFAULT_SPEED 100.f
@@ -21,6 +23,8 @@ private:
    * movement direction.
    */
   USceneComponent *ParentMeshComponent;
+
+  UStatsComponent *ParentStatsComponent;
 
   UPROPERTY(VisibleAnywhere)
   /**
