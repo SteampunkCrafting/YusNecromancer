@@ -11,7 +11,7 @@
 /// The DamageType enum defines the types of the damage,
 /// which can be inflicted or taken within the game.
 UENUM()
-enum struct DamageType {
+enum struct EDamageType {
   /// Damages everyone
   PHYSICAL,
   /// Damages living things, but heals undead
@@ -22,7 +22,7 @@ enum struct DamageType {
 
 /// The CreatureType enum defines the creature
 UENUM()
-enum struct CreatureType {
+enum struct ECreatureType {
   /// Living creatures are getting healed from
   /// light damage
   LIVING,
@@ -36,15 +36,15 @@ struct FDamage {
   GENERATED_BODY()
 
 private: // FIELDS
-  UPROPERTY(VisibleAnywhere) DamageType Type;
-  UPROPERTY(VisibleAnywhere) unsigned Value;
+  UPROPERTY(EditAnywhere) EDamageType Type = EDamageType::PHYSICAL;
+  UPROPERTY(EditAnywhere) uint16 Value = 10;
 
 public: // CONSTRUCTORS
-  static FDamage New(const DamageType &DamageType, const unsigned &Value);
+  static FDamage New(const EDamageType &DamageType, const unsigned &Value);
 
 public: // ACCESSORS
   unsigned GetValue() const;
-  DamageType GetType() const;
+  EDamageType GetType() const;
 };
 
 UCLASS()
@@ -52,18 +52,22 @@ class YUSNECROMANCER_API UStatsComponent final : public UActorComponent {
   GENERATED_BODY()
 
 private: // FIELDS
-  UPROPERTY(EditAnywhere) CreatureType CreatureType = CreatureType::LIVING;
+  UPROPERTY(EditAnywhere) ECreatureType CreatureType = ECreatureType::LIVING;
   UPROPERTY(EditAnywhere) unsigned MaxHealth = 100;
   UPROPERTY(EditAnywhere) unsigned CurrentHealth = 100;
 
 private: // SUBCOMPONENTS
   UWidgetComponent *HealthBarComponent;
 
+public: // BLUEPRINT ACCESSORS
+  UFUNCTION(BlueprintPure) enum ECreatureType GetCreatureType() const;
+  UFUNCTION(BlueprintPure) float GetMaxHealthFloat() const;
+  UFUNCTION(BlueprintPure) float GetCurrentHealthFloat() const;
+
 public: // ACCESSORS
-  enum CreatureType GetType() const;
-  unsigned GetMaxHealth() const;
-  unsigned GetCurrentHealth() const;
+  uint16 GetMaxHealth() const;
+  uint16 GetCurrentHealth() const;
 
 public: // MUTATORS
-  void ApplyDamage(const FDamage &);
+  void TakeDamage(const FDamage &);
 };
