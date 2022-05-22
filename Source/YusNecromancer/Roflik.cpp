@@ -1,10 +1,8 @@
 #include "Roflik.h"
 
-ARoflik::ARoflik()
-{
+ARoflik::ARoflik() {
   /* ---- VARIOUS INIT PARAMETERS ---- */
   this->PrimaryActorTick.bCanEverTick = true;
-  this->AutoPossessPlayer = EAutoReceiveInput::Player0;
 
   /* ---- COMPONENT SETUP ---- */
   /* -- ROOT (AND HIT CAPSULE) -- */
@@ -71,8 +69,7 @@ ARoflik::ARoflik()
   }
 }
 
-void ARoflik::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
-{
+void ARoflik::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent) {
   this->Super::SetupPlayerInputComponent(PlayerInputComponent);
   this->InputComponent->BindAxis(AXIS_MAPPING_FORWARD, this,
                                  &ARoflik::OnMoveForward);
@@ -80,19 +77,16 @@ void ARoflik::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
                                  &ARoflik::OnMoveRight);
 }
 
-void ARoflik::BeginPlay()
-{
+void ARoflik::BeginPlay() {
   this->Super::BeginPlay();
   ((UStatsWidget *)this->HealthBar->GetWidget())
       ->SetTrackedStats(this->StatsComponent);
 }
 
-void ARoflik::OnMoveForward(float Value)
-{
+void ARoflik::OnMoveForward(float Value) {
   this->MoveComponent->AddInputVector(this->GetActorForwardVector() * Value);
 }
 
-void ARoflik::OnMoveRight(float Value)
-{
+void ARoflik::OnMoveRight(float Value) {
   this->MoveComponent->AddInputVector(this->GetActorRightVector() * Value);
 }
