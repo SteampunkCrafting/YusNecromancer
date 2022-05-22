@@ -4,4 +4,6 @@
 
 void Effect::Weather() { this->bIsWeathered = true; }
 
+Effect::~Effect() {}
+
 bool Effect::IsWeathered() const { return this->bIsWeathered; }

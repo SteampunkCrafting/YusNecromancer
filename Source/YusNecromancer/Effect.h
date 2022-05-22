@@ -15,15 +15,16 @@ protected: // METHODS
   /// garbage collected.
   virtual void Weather() final;
 
+public: // CONSTRUCTOR/DESTRUCTOR
+  virtual ~Effect();
+
 public: // ABSTRACT METHODS
   /// @brief An abstract method, that is called every tick by StatsComponent
   /// until the effect is weathered.
   /// @arg Owner -- the owner of this effect.
-  virtual void OnTick(UStatsComponent *Owner, float DeltaTime) = 0;
+  virtual void OnTick(class UStatsComponent *Owner, float DeltaTime) = 0;
 
 public: // ACCESSORS
   /// @brief Checks if the effect has been weathered.
   virtual bool IsWeathered() const final;
-
-  friend class UStatsComponent;
 };

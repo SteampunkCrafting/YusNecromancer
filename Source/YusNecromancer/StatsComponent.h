@@ -4,7 +4,9 @@
 
 #include "Components/ActorComponent.h"
 #include "Components/WidgetComponent.h"
+#include "Containers/List.h"
 #include "CoreMinimal.h"
+#include "Effect.h"
 
 #include "StatsComponent.generated.h"
 
@@ -51,10 +53,13 @@ UCLASS()
 class YUSNECROMANCER_API UStatsComponent final : public UActorComponent {
   GENERATED_BODY()
 
+  friend class DamageTakenEffect;
+
 private: // FIELDS
   UPROPERTY(EditAnywhere) ECreatureType CreatureType = ECreatureType::LIVING;
   UPROPERTY(EditAnywhere) unsigned MaxHealth = 100;
   UPROPERTY(EditAnywhere) unsigned CurrentHealth = 100;
+  TDoubleLinkedList<class Effect *> Effects;
 
 private: // SUBCOMPONENTS
   UWidgetComponent *HealthBarComponent;
@@ -64,10 +69,17 @@ public: // BLUEPRINT ACCESSORS
   UFUNCTION(BlueprintPure) float GetMaxHealthFloat() const;
   UFUNCTION(BlueprintPure) float GetCurrentHealthFloat() const;
 
+public: // CONSTRUCTORS
+  UStatsComponent();
+
+public: // OVERRIDES
+  void TickComponent(float DeltaTime, ELevelTick,
+                     FActorComponentTickFunction *) override;
+
 public: // ACCESSORS
   uint16 GetMaxHealth() const;
   uint16 GetCurrentHealth() const;
 
 public: // MUTATORS
-  void TakeDamage(const FDamage &);
+  void ApplyEffect(class Effect *);
 };
