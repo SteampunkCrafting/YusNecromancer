@@ -13,8 +13,20 @@ UCLASS()
 class YUSNECROMANCER_API ADamagingProjectile : public AActor {
   GENERATED_BODY()
 
-private:
+public: // STATE
   float fTimer = 5.f;
+  AActor *Owner = nullptr;
+
+  // Projectile movement component.
+  UPROPERTY(VisibleAnywhere, Category = Movement)
+  UProjectileMovementComponent *ProjectileMovementComponent;
+
+private: // HANDLERS
+  UFUNCTION()
+  void TriggerEnter(class UPrimitiveComponent *HitComp,
+                    class AActor *OtherActor,
+                    class UPrimitiveComponent *OtherComp, int32 OtherBodyIndex,
+                    bool bFromSweep, const FHitResult &SweepResult);
 
 public:
   // Sets default values for this actor's properties
@@ -31,8 +43,4 @@ public:
   // Sphere collision component.
   UPROPERTY(VisibleDefaultsOnly, Category = Projectile)
   USphereComponent *CollisionComponent;
-
-  // Projectile movement component.
-  UPROPERTY(VisibleAnywhere, Category = Movement)
-  UProjectileMovementComponent *ProjectileMovementComponent;
 };

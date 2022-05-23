@@ -4,9 +4,13 @@
 #include "DamagingProjectile.h"
 
 void AYus::ShootProjectile() {
-  this->GetWorld()->SpawnActor<ADamagingProjectile>(
+  auto Projectile = this->GetWorld()->SpawnActor<ADamagingProjectile>(
       ADamagingProjectile::StaticClass(), this->GetActorLocation(),
       this->GetActorRotation(), FActorSpawnParameters());
+  Projectile->Owner = this;
+  Projectile->ProjectileMovementComponent->Velocity =
+      this->MeshComponent->GetRelativeRotation().RotateVector(
+          Projectile->ProjectileMovementComponent->Velocity);
 }
 
 AYus::AYus() : Super() { this->AutoPossessPlayer = EAutoReceiveInput::Player0; }

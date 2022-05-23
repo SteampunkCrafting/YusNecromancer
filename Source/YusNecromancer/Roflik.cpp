@@ -90,3 +90,5 @@ void ARoflik::OnMoveForward(float Value) {
 void ARoflik::OnMoveRight(float Value) {
   this->MoveComponent->AddInputVector(this->GetActorRightVector() * Value);
 }
+
+void ARoflik::ApplyEffect(Effect *E) { this->StatsComponent->ApplyEffect(E); }

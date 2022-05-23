@@ -23,15 +23,15 @@ UCLASS()
 class YUSNECROMANCER_API ARoflik : public APawn {
   GENERATED_BODY()
 
-private: // GAME MECHANICS COMPONENTS
+protected: // GAME MECHANICS COMPONENTS
   UPROPERTY(EditAnywhere) UStatsComponent *StatsComponent;
 
-private: // GAME DESIGN COMPONENTS
+protected: // GAME DESIGN COMPONENTS
   UPROPERTY(EditAnywhere) UCameraComponent *CameraComponent;
   UPROPERTY(EditAnywhere) UStaticMeshComponent *MeshComponent;
   UPROPERTY(VisibleAnywhere) UWidgetComponent *HealthBar;
 
-private: // CONTROL COMPONENTS
+protected: // CONTROL COMPONENTS
   UPROPERTY(VisibleAnywhere) URoflikMovementComponent *MoveComponent;
 
 protected: // CONTROL HOOKS
@@ -41,6 +41,9 @@ protected: // CONTROL HOOKS
   void OnDodge();         // TODO
   void OnBasicAction();   // TODO
   void OnSpecialAction(); // TODO
+
+public: // API
+  void ApplyEffect(Effect *);
 
 protected: // HOOKS
   ARoflik();

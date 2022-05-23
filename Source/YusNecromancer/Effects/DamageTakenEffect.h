@@ -2,7 +2,7 @@
 #include "../Effect.h"
 
 class YUSNECROMANCER_API DamageTakenEffect final : public Effect {
-private: // FIELDS
+public: // FIELDS
   FDamage Damage;
 
 protected: // OVERRIDEN METHODS

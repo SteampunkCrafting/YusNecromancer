@@ -36,7 +36,7 @@ void UStatsComponent::TickComponent(float DeltaTime, ELevelTick,
   }
 }
 
-void UStatsComponent::ApplyEffect(Effect *) {}
+void UStatsComponent::ApplyEffect(Effect *E) { this->Effects.AddHead(E); }
 
 enum ECreatureType UStatsComponent::GetCreatureType() const {
   return this->CreatureType;
