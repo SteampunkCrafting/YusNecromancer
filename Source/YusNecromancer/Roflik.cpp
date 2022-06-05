@@ -75,12 +75,36 @@ void ARoflik::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent) {
                                  &ARoflik::OnMoveForward);
   this->InputComponent->BindAxis(AXIS_MAPPING_RIGHT, this,
                                  &ARoflik::OnMoveRight);
+  this->InputComponent->BindAction(ACTION_MAPPING_BASIC, IE_Pressed, this,
+                                   &ARoflik::OnActionBasic);
+  this->InputComponent->BindAction(ACTION_MAPPING_SPECIAL, IE_Pressed, this,
+                                   &ARoflik::OnActionSpecial);
+  this->InputComponent->BindAction(ACTION_MAPPING_DODGE, IE_Pressed, this,
+                                   &ARoflik::OnActionDodge);
+  this->InputComponent->BindAction(ACTION_MAPPING_USE, IE_Pressed, this,
+                                   &ARoflik::OnActionUse);
+  this->InputComponent->BindAction(ACTION_MAPPING_ULTIMATE, IE_Pressed, this,
+                                   &ARoflik::OnActionUltimate);
 }
 
 void ARoflik::BeginPlay() {
   this->Super::BeginPlay();
   ((UStatsWidget *)this->HealthBar->GetWidget())
       ->SetTrackedStats(this->StatsComponent);
+}
+
+void ARoflik::Tick(float DeltaTime) {
+  /* ---- PERFORMING ACTION TICKS ---- */
+  if (this->BasicAbility)
+    this->BasicAbility->Tick(DeltaTime);
+  if (this->SpecialAbility)
+    this->SpecialAbility->Tick(DeltaTime);
+  if (this->DodgeAbility)
+    this->DodgeAbility->Tick(DeltaTime);
+  if (this->UseAbility)
+    this->UseAbility->Tick(DeltaTime);
+  if (this->UltimateAbility)
+    this->UltimateAbility->Tick(DeltaTime);
 }
 
 void ARoflik::OnMoveForward(float Value) {
@@ -91,4 +115,49 @@ void ARoflik::OnMoveRight(float Value) {
   this->MoveComponent->AddInputVector(this->GetActorRightVector() * Value);
 }
 
+void ARoflik::OnActionBasic() {
+  if (this->BasicAbility)
+    this->BasicAbility->Trigger();
+}
+
+void ARoflik::OnActionSpecial() {
+  if (this->SpecialAbility)
+    this->SpecialAbility->Trigger();
+}
+
+void ARoflik::OnActionDodge() {
+  if (this->DodgeAbility)
+    this->DodgeAbility->Trigger();
+}
+
+void ARoflik::OnActionUse() {
+  if (this->UseAbility)
+    this->UseAbility->Trigger();
+}
+
+void ARoflik::OnActionUltimate() {
+  if (this->UltimateAbility)
+    this->UltimateAbility->Trigger();
+}
+
 void ARoflik::ApplyEffect(Effect *E) { this->StatsComponent->ApplyEffect(E); }
+
+void ARoflik::SetBasicAction(TUniquePtr<Ability> Action) {
+  this->BasicAbility.Reset(Action.Release());
+}
+
+void ARoflik::SetSpecialAction(TUniquePtr<Ability> Action) {
+  this->SpecialAbility.Reset(Action.Release());
+}
+
+void ARoflik::SetDodgeAction(TUniquePtr<Ability> Action) {
+  this->DodgeAbility.Reset(Action.Release());
+}
+
+void ARoflik::SetUseAction(TUniquePtr<Ability> Action) {
+  this->UseAbility.Reset(Action.Release());
+}
+
+void ARoflik::SetUltimateAction(TUniquePtr<Ability> Action) {
+  this->UltimateAbility.Reset(Action.Release());
+}

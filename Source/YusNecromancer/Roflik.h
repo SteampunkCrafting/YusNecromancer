@@ -1,6 +1,7 @@
 #pragma once
 
 /* ---- INCLUDES ---- */
+#include "Ability.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "CoreMinimal.h"
@@ -17,11 +18,20 @@
 #define ACTION_MAPPING_BASIC "ROFLIK_ACTION_BASIC"
 #define ACTION_MAPPING_SPECIAL "ROFLIK_ACTION_SPECIAL"
 #define ACTION_MAPPING_DODGE "ROFLIK_ACTION_DODGE"
+#define ACTION_MAPPING_USE "ROFLIK_ACTION_USE"
+#define ACTION_MAPPING_ULTIMATE "ROFLIK_ACTION_ULTIMATE"
 
 /* ---- CLASS DECLARATION ---- */
 UCLASS()
 class YUSNECROMANCER_API ARoflik : public APawn {
   GENERATED_BODY()
+
+private: // ACTIONS
+  TUniquePtr<Ability> BasicAbility;
+  TUniquePtr<Ability> SpecialAbility;
+  TUniquePtr<Ability> DodgeAbility;
+  TUniquePtr<Ability> UseAbility;
+  TUniquePtr<Ability> UltimateAbility;
 
 protected: // GAME MECHANICS COMPONENTS
   UPROPERTY(EditAnywhere) UStatsComponent *StatsComponent;
@@ -32,21 +42,28 @@ protected: // GAME DESIGN COMPONENTS
   UPROPERTY(VisibleAnywhere) UWidgetComponent *HealthBar;
 
 protected: // CONTROL COMPONENTS
-  UPROPERTY(VisibleAnywhere) URoflikMovementComponent *MoveComponent;
+  URoflikMovementComponent *MoveComponent;
 
-protected: // CONTROL HOOKS
+private: // CONTROL HOOKS
   void OnMoveForward(float);
   void OnMoveRight(float);
-
-  void OnDodge();         // TODO
-  void OnBasicAction();   // TODO
-  void OnSpecialAction(); // TODO
+  void OnActionBasic();
+  void OnActionSpecial();
+  void OnActionDodge();
+  void OnActionUse();
+  void OnActionUltimate();
 
 public: // API
   void ApplyEffect(Effect *);
 
-protected: // HOOKS
+protected: // ROFLIK SETUP
   ARoflik();
   virtual void SetupPlayerInputComponent(class UInputComponent *) override;
   virtual void BeginPlay() override;
+  virtual void Tick(float) override;
+  virtual void SetBasicAction(TUniquePtr<Ability>) final;
+  virtual void SetSpecialAction(TUniquePtr<Ability>) final;
+  virtual void SetDodgeAction(TUniquePtr<Ability>) final;
+  virtual void SetUseAction(TUniquePtr<Ability>) final;
+  virtual void SetUltimateAction(TUniquePtr<Ability>) final;
 };
