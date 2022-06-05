@@ -26,15 +26,16 @@ UCLASS()
 class YUSNECROMANCER_API ARoflik : public APawn {
   GENERATED_BODY()
 
-private: // ACTIONS
-  TUniquePtr<Ability> BasicAbility;
-  TUniquePtr<Ability> SpecialAbility;
-  TUniquePtr<Ability> DodgeAbility;
-  TUniquePtr<Ability> UseAbility;
-  TUniquePtr<Ability> UltimateAbility;
+private: // ABILITIES
+  TUniquePtr<class Ability> BasicAbility;
+  TUniquePtr<class Ability> SpecialAbility;
+  TUniquePtr<class Ability> DodgeAbility;
+  TUniquePtr<class Ability> UseAbility;
+  TUniquePtr<class Ability> UltimateAbility;
 
 protected: // GAME MECHANICS COMPONENTS
-  UPROPERTY(EditAnywhere) UStatsComponent *StatsComponent;
+  UPROPERTY(EditAnywhere)
+  UStatsComponent *StatsComponent;
 
 protected: // GAME DESIGN COMPONENTS
   UPROPERTY(EditAnywhere) UCameraComponent *CameraComponent;

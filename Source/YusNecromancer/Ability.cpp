@@ -6,7 +6,11 @@ float Ability::GetCooldown() const { return this->fCooldownTimer; }
 
 bool Ability::IsReady() const { return this->GetCooldown() <= 0.f; }
 
+ARoflik *Ability::GetOwner() const { return this->Owner; }
+
 void Ability::SetCooldown(float Cooldown) { this->fCooldownTimer = Cooldown; }
+
+void Ability::SetOwner(ARoflik *NewOwner) { this->Owner = NewOwner; }
 
 Ability::~Ability() {}
 

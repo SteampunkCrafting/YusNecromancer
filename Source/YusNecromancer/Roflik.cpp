@@ -1,5 +1,14 @@
 #include "Roflik.h"
 
+/* ---- HELPERS ---- */
+static inline void SetAbility(ARoflik *Owner, TUniquePtr<Ability> &Field,
+                              TUniquePtr<Ability> &Value) {
+  Field.Reset(Value.Release());
+  if (Field.IsValid())
+    Field->SetOwner(Owner);
+}
+
+/* ---- IMPLEMENTATION ---- */
 ARoflik::ARoflik() {
   /* ---- VARIOUS INIT PARAMETERS ---- */
   this->PrimaryActorTick.bCanEverTick = true;
@@ -143,21 +152,21 @@ void ARoflik::OnActionUltimate() {
 void ARoflik::ApplyEffect(Effect *E) { this->StatsComponent->ApplyEffect(E); }
 
 void ARoflik::SetBasicAction(TUniquePtr<Ability> Action) {
-  this->BasicAbility.Reset(Action.Release());
+  SetAbility(this, this->BasicAbility, Action);
 }
 
 void ARoflik::SetSpecialAction(TUniquePtr<Ability> Action) {
-  this->SpecialAbility.Reset(Action.Release());
+  SetAbility(this, this->SpecialAbility, Action);
 }
 
 void ARoflik::SetDodgeAction(TUniquePtr<Ability> Action) {
-  this->DodgeAbility.Reset(Action.Release());
+  SetAbility(this, this->DodgeAbility, Action);
 }
 
 void ARoflik::SetUseAction(TUniquePtr<Ability> Action) {
-  this->UseAbility.Reset(Action.Release());
+  SetAbility(this, this->UseAbility, Action);
 }
 
 void ARoflik::SetUltimateAction(TUniquePtr<Ability> Action) {
-  this->UltimateAbility.Reset(Action.Release());
+  SetAbility(this, this->UltimateAbility, Action);
 }
