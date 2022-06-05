@@ -1,8 +1,8 @@
 #include "Roflik.h"
 
 /* ---- HELPERS ---- */
-static inline void SetAbility(ARoflik *Owner, TUniquePtr<Ability> &Field,
-                              TUniquePtr<Ability> &Value) {
+static inline void SetAbility(ARoflik *Owner, TUniquePtr<Skill> &Field,
+                              TUniquePtr<Skill> &Value) {
   Field.Reset(Value.Release());
   if (Field.IsValid())
     Field->SetOwner(Owner);
@@ -149,24 +149,28 @@ void ARoflik::OnActionUltimate() {
     this->UltimateAbility->Trigger();
 }
 
+const UStaticMeshComponent *ARoflik::GetMeshComponent() const {
+  return this->MeshComponent;
+}
+
 void ARoflik::ApplyEffect(Effect *E) { this->StatsComponent->ApplyEffect(E); }
 
-void ARoflik::SetBasicAction(TUniquePtr<Ability> Action) {
+void ARoflik::SetBasicAction(TUniquePtr<Skill> Action) {
   SetAbility(this, this->BasicAbility, Action);
 }
 
-void ARoflik::SetSpecialAction(TUniquePtr<Ability> Action) {
+void ARoflik::SetSpecialAction(TUniquePtr<Skill> Action) {
   SetAbility(this, this->SpecialAbility, Action);
 }
 
-void ARoflik::SetDodgeAction(TUniquePtr<Ability> Action) {
+void ARoflik::SetDodgeAction(TUniquePtr<Skill> Action) {
   SetAbility(this, this->DodgeAbility, Action);
 }
 
-void ARoflik::SetUseAction(TUniquePtr<Ability> Action) {
+void ARoflik::SetUseAction(TUniquePtr<Skill> Action) {
   SetAbility(this, this->UseAbility, Action);
 }
 
-void ARoflik::SetUltimateAction(TUniquePtr<Ability> Action) {
+void ARoflik::SetUltimateAction(TUniquePtr<Skill> Action) {
   SetAbility(this, this->UltimateAbility, Action);
 }

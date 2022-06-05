@@ -6,7 +6,7 @@
 #include "Roflik.h"
 
 /// @brief An abstract ability class
-class YUSNECROMANCER_API Ability {
+class YUSNECROMANCER_API Skill {
 private: // STATE
   class ARoflik *Owner = nullptr;
   float fCooldownTimer = 0.f;
@@ -40,5 +40,5 @@ public: // MUTATORS
   virtual void SetOwner(class ARoflik *) final;
 
 public: // CONSTRUCTORS
-  virtual ~Ability();
+  virtual ~Skill();
 };

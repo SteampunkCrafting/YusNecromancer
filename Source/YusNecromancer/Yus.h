@@ -12,13 +12,6 @@
 UCLASS()
 class YUSNECROMANCER_API AYus : public ARoflik {
   GENERATED_BODY()
-
-private:
-  void ShootProjectile();
-
 public:
   AYus();
-
-protected:
-  virtual void SetupPlayerInputComponent(class UInputComponent *) override;
 };

@@ -1,7 +1,7 @@
 #pragma once
 
 /* ---- INCLUDES ---- */
-#include "Ability.h"
+#include "Skill.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "CoreMinimal.h"
@@ -27,11 +27,11 @@ class YUSNECROMANCER_API ARoflik : public APawn {
   GENERATED_BODY()
 
 private: // ABILITIES
-  TUniquePtr<class Ability> BasicAbility;
-  TUniquePtr<class Ability> SpecialAbility;
-  TUniquePtr<class Ability> DodgeAbility;
-  TUniquePtr<class Ability> UseAbility;
-  TUniquePtr<class Ability> UltimateAbility;
+  TUniquePtr<class Skill> BasicAbility;
+  TUniquePtr<class Skill> SpecialAbility;
+  TUniquePtr<class Skill> DodgeAbility;
+  TUniquePtr<class Skill> UseAbility;
+  TUniquePtr<class Skill> UltimateAbility;
 
 protected: // GAME MECHANICS COMPONENTS
   UPROPERTY(EditAnywhere)
@@ -54,7 +54,10 @@ private: // CONTROL HOOKS
   void OnActionUse();
   void OnActionUltimate();
 
-public: // API
+public: // ACCESSORS
+  const UStaticMeshComponent *GetMeshComponent() const;
+
+public: // MUTATORS
   void ApplyEffect(Effect *);
 
 protected: // ROFLIK SETUP
@@ -62,9 +65,9 @@ protected: // ROFLIK SETUP
   virtual void SetupPlayerInputComponent(class UInputComponent *) override;
   virtual void BeginPlay() override;
   virtual void Tick(float) override;
-  virtual void SetBasicAction(TUniquePtr<Ability>) final;
-  virtual void SetSpecialAction(TUniquePtr<Ability>) final;
-  virtual void SetDodgeAction(TUniquePtr<Ability>) final;
-  virtual void SetUseAction(TUniquePtr<Ability>) final;
-  virtual void SetUltimateAction(TUniquePtr<Ability>) final;
+  virtual void SetBasicAction(TUniquePtr<Skill>) final;
+  virtual void SetSpecialAction(TUniquePtr<Skill>) final;
+  virtual void SetDodgeAction(TUniquePtr<Skill>) final;
+  virtual void SetUseAction(TUniquePtr<Skill>) final;
+  virtual void SetUltimateAction(TUniquePtr<Skill>) final;
 };
