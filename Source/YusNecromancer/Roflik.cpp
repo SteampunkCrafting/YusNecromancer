@@ -47,7 +47,7 @@ ARoflik::ARoflik() {
 
     // SETTING DEFAULT MESH
     static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(
-        TEXT("/Game/skeleton_sub01"));
+        TEXT("/Game/Assets/Characters/Skeleton/skeleton_sub01"));
     UStaticMesh *const Asset = MeshAsset.Object;
     Mesh->SetStaticMesh(Asset);
   }
@@ -58,7 +58,7 @@ ARoflik::ARoflik() {
         this->CreateDefaultSubobject<UStatsComponent>(TEXT("Stats"));
 
     static ConstructorHelpers::FClassFinder<UStatsWidget> MyWidgetClass(
-        TEXT("/Game/WBP_RoflikHealthbar"));
+        TEXT("/Game/UI/WBP_RoflikHealthbar"));
     UWidgetComponent *const HPBar = this->HealthBar =
         CreateDefaultSubobject<UWidgetComponent>("HealthBar");
     HPBar->SetWidgetSpace(EWidgetSpace::Screen);

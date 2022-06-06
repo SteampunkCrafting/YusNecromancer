@@ -66,7 +66,7 @@ ADamagingProjectile::ADamagingProjectile() {
 
   // SETTING DEFAULT MESH
   static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(
-      TEXT("/Game/skeleton_sub01"));
+      TEXT("/Game/Assets/Characters/Skeleton/skeleton_sub01"));
   UStaticMesh *const Asset = MeshAsset.Object;
   Mesh->SetStaticMesh(Asset);
 }
