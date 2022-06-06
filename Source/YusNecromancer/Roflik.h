@@ -1,12 +1,12 @@
 #pragma once
 
 /* ---- INCLUDES ---- */
-#include "Skill.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "RoflikMovementComponent.h"
+#include "Skill.h"
 #include "StatsComponent.h"
 #include "StatsWidget.h"
 
@@ -58,7 +58,7 @@ public: // ACCESSORS
   const UStaticMeshComponent *GetMeshComponent() const;
 
 public: // MUTATORS
-  void ApplyEffect(Effect *);
+  void ApplyEffect(TUniquePtr<Effect>);
 
 protected: // ROFLIK SETUP
   ARoflik();

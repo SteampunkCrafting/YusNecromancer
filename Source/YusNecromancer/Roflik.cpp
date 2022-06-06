@@ -153,7 +153,9 @@ const UStaticMeshComponent *ARoflik::GetMeshComponent() const {
   return this->MeshComponent;
 }
 
-void ARoflik::ApplyEffect(Effect *E) { this->StatsComponent->ApplyEffect(E); }
+void ARoflik::ApplyEffect(TUniquePtr<Effect> E) {
+  this->StatsComponent->ApplyEffect(E.Release());
+}
 
 void ARoflik::SetBasicAction(TUniquePtr<Skill> Action) {
   SetAbility(this, this->BasicAbility, Action);

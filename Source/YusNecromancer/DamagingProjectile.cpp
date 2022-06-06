@@ -19,9 +19,9 @@ void ADamagingProjectile::TriggerEnter(UPrimitiveComponent *HitComp,
   if (this->Owner == OtherActor)
     return;
 
-  auto *E = new DamageTakenEffect();
+  auto E = new DamageTakenEffect();
   E->Damage = FDamage::New(EDamageType::LIGHT, 20);
-  Roflik->ApplyEffect(E);
+  Roflik->ApplyEffect(TUniquePtr<Effect>(E));
   this->Destroy();
 }
 
